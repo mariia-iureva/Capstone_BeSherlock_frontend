@@ -5,13 +5,9 @@ import MessageList from "./MessageList";
 
 function App() {
   const [values, setValues] = useState({
-    Message: "hello",
-    MessageList: ["hi"],
+    Message: "",
+    MessageList: [],
   });
-
-  // const [messageInputField, setMessageInputField] = useState({
-  //   message: "",
-  // });
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
@@ -36,6 +32,7 @@ function App() {
 
   const handleMessageSubmit = (event) => {
     event.preventDefault();
+    event.target.reset();
     // setMessageInputField({
     //   message: "",
     // });
@@ -45,8 +42,10 @@ function App() {
     <div className="App">
       <h1> Conversation</h1>
       <main>
-        <div className="all_messages_bubble">
-          <MessageList entries={values} />
+        <div className="all_messages_bubble_outer_container">
+          <div className="all_messages_bubble_inner_container">
+            <MessageList entries={values} />
+          </div>
         </div>
       </main>
       <section>
@@ -55,6 +54,7 @@ function App() {
           <input
             id="standard-name"
             label="Message"
+            placeholder="Write here"
             value={values.name}
             onChange={handleChange("Message")}
             margin="normal"
@@ -66,7 +66,7 @@ function App() {
             type="submit"
             onClick={(e) => handleClick(e)}
           >
-            Submit
+            Say something
           </button>
         </form>
       </section>

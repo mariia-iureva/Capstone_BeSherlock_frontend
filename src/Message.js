@@ -4,8 +4,12 @@ import "./Message.css";
 // import TimeStamp from "./TimeStamp";
 
 const Message = (props) => {
+  const localRemote = props.entry.includes("Bot")
+    ? "chat-entry remote"
+    : "chat-entry local";
+
   return (
-    <div className="message-entry">
+    <div className={localRemote}>
       <section className="entry-bubble">
         <p>{props.entry}</p>
       </section>
