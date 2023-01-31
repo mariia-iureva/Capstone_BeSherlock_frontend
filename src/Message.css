@@ -1,0 +1,13 @@
+.chat-entry .entry-bubble {
+    background-color: #ffffe0;
+    border-radius: 30px;
+    max-width: 50rem;
+    min-width: 10rem;
+    padding: 1rem 1rem 0.1rem 1rem;
+    position: relative;
+    width: fit-content;
+}
+
+.chat-entry .entry-bubble:hover {
+    background-color: #fefea2;
+}

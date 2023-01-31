@@ -1,35 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
-// import { makeStyles } from "@mui/styles";
-// import Button from "@mui/material/Button";
-// // // import { makeStyles } from "@material-ui/core/styles";
-// // // import Button from "@material-ui/core/Button";
-// import TextField from "@mui/material/TextField";
-// // // import TextField from "@material-ui/core/TextField";
-// import List from "@mui/material/List";
-// // // import List from "@material-ui/core/List";
-// import ListItemText from "@mui/material/ListItemText";
-// // import ListItemText from "@material-ui/core/ListItemText";
-// const useStyles = makeStyles((theme) => ({
-//   button: {
-//     margin: theme.spacing(3),
-//   },
-// }));
+import MessageList from "./MessageList";
+
 function App() {
-  // const classes = useStyles();
-  const [values, setValues] = React.useState({
+  const [values, setValues] = useState({
     Message: "hello",
-    MessageList: [],
+    MessageList: ["hi"],
   });
-  const getMessageList = () => {
-    let msgList = values.MessageList.map((msg) => {
-      return <ListItemText primary={msg} />;
-    });
-    return msgList;
-  };
+
+  // const [messageInputField, setMessageInputField] = useState({
+  //   message: "",
+  // });
+
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
+    console.log(values);
   };
   const handleClick = (event) => {
     let url = "http://localhost:3001/postMessage";
@@ -47,10 +33,44 @@ function App() {
       });
     setValues({ ...values, msgList });
   };
+
+  const handleMessageSubmit = (event) => {
+    event.preventDefault();
+    // setMessageInputField({
+    //   message: "",
+    // });
+  };
+
   return (
     <div className="App">
-      <List>{getMessageList()}</List>
-      <TextField
+      <h1> Conversation</h1>
+      <main>
+        <div className="all_messages_bubble">
+          <MessageList entries={values} />
+        </div>
+      </main>
+      <section>
+        <form className="chat_input" onSubmit={handleMessageSubmit}>
+          <label htmlFor="message">Message:</label>
+          <input
+            id="standard-name"
+            label="Message"
+            value={values.name}
+            onChange={handleChange("Message")}
+            margin="normal"
+            type="text"
+            required
+          />
+          <button
+            className="send_message_button"
+            type="submit"
+            onClick={(e) => handleClick(e)}
+          >
+            Submit
+          </button>
+        </form>
+      </section>
+      {/* <TextField
         id="standard-name"
         label="Message"
         value={values.name}
@@ -63,7 +83,7 @@ function App() {
         onClick={(e) => handleClick(e)}
       >
         Send
-      </Button>
+      </Button> */}
     </div>
   );
 }
