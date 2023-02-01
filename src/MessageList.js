@@ -3,24 +3,25 @@ import React from "react";
 import Message from "./Message";
 import "./MessageList.css";
 
-const MessageList = (props) => {
-  const entries = props.entries.MessageList;
-  console.log("these are props", props);
-  console.log("these are entries", entries);
+const MessageList = ({ messages }) => {
+  // console.log("these are props", props);
+  console.log("these are messages", messages);
 
-  const getMessageListJSX = entries.map((entry, i) => {
-    return (
-      <div className="message-list" key={i}>
-        <Message entry={entry} />
-      </div>
-    );
-  });
-
-  return getMessageListJSX;
+  return (
+    <>
+      {messages.map((entry, i) => {
+        return (
+          <div className="message-list" key={i}>
+            <Message entry={entry} />
+          </div>
+        );
+      })}
+    </>
+  );
 };
 
 // MessageList.propTypes = {
-//   entries: PropTypes.arrayOf(
+//   messages: PropTypes.arrayOf(
 //     PropTypes.shape({
 //       id: PropTypes.number.isRequired,
 //       sender: PropTypes.string.isRequired,

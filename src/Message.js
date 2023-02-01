@@ -4,7 +4,7 @@ import "./Message.css";
 // import TimeStamp from "./TimeStamp";
 
 const Message = (props) => {
-  const localRemote = props.entry.includes("Bot")
+  const localRemote = props.entry.includes("Bot:")
     ? "chat-entry remote"
     : "chat-entry local";
 
