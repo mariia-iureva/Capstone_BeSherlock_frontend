@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  overflow-x: hidden;
 }
 
 .App-header {
@@ -18,7 +19,7 @@ main .all_messages_bubble_outer_container {
   border: solid;
   border-color: black;
   border-radius: 3em;
-  width: 400px;
+  width: 60%;
   height: 600px;
   overflow:hidden;
   background-color:rgb(232, 246, 219);
@@ -32,11 +33,17 @@ main .all_messages_bubble_inner_container {
   margin: auto;
   /* border: solid; */
   /* border-color: black; */
-  width: 98%;
-  height: 100%;
+  width: 95%;
+  height: 98%;
   overflow-y:auto;
   overflow-x: hidden;
   /* background-color:rgb(232, 246, 219); */
   position: relative;
 
+}
+
+.TEST {
+  height: 5px;
+  width: 100%;
+  border: 1px solid red;
 }

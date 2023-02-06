@@ -4,8 +4,7 @@ import Message from "./Message";
 import "./MessageList.css";
 
 const MessageList = ({ messages }) => {
-  // console.log("these are props", props);
-  console.log("these are messages", messages);
+  // console.log("these are messages", messages);
 
   return (
     <>
@@ -19,18 +18,5 @@ const MessageList = ({ messages }) => {
     </>
   );
 };
-
-// MessageList.propTypes = {
-//   messages: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       sender: PropTypes.string.isRequired,
-//       body: PropTypes.string.isRequired,
-//       timeStamp: PropTypes.string.isRequired,
-//     })
-// ).isRequired,
-// onUpdateMessage: PropTypes.func.isRequired,
-//   ),
-// };
 
 export default MessageList;
