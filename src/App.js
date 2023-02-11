@@ -2,7 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./App.css";
 import MessageList from "./MessageList";
+import StartMessage from "./StartMessage";
+import EndMessage from "./EndMessage";
 import Timer from "./Timer";
+
 // import desktopImage from "./img/sherlock_desktop.jpeg";
 // import mobileImage from "./img/sherlock_mobile-min.png";
 // import ScrollToBottom from "react-scroll-to-bottom";
@@ -16,7 +19,7 @@ function App() {
 
   const handleChange = (event) => {
     setInputMessage(event.target.value);
-    console.log("handleChange", event.target.value);
+    // console.log("handleChange", event.target.value);
   };
 
   // This thing is setting a timer to update input message after a pause
@@ -32,13 +35,13 @@ function App() {
   // This thing triggers handleClick when key "Enter" is hit
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      console.log("input message after Enter:", inputMessage);
+      // console.log("input message after Enter:", inputMessage);
       handleClick(inputMessage);
     }
   };
 
   const handleClick = React.useCallback(() => {
-    console.log("handleClick", inputMessage);
+    // console.log("handleClick", inputMessage);
     if (!inputMessage) {
       return;
     }
@@ -53,15 +56,12 @@ function App() {
         msgList.push("Bot: " + res.data.bot_message);
         setMessages([...msgList]);
         setStep(res.data.step);
-        console.log("handleClick then", msgList);
+        // console.log("handleClick then", msgList);
       })
       .catch((err) => {
         console.log(err);
       });
     console.log("handleClick end", msgList);
-
-    // const chatContainer = chatContainerRef.current;
-    // chatContainer.scrollIntoView({ behavior: "smooth" });
 
     setInputMessage("");
   }, [inputMessage, setInputMessage, messages, setMessages, step, setStep]);
@@ -82,6 +82,20 @@ function App() {
     chatContainer.scrollIntoView({ behavior: "smooth" });
   }, [chatContainerRef, messages]);
 
+  if (messages.length === 0) {
+    var textMessagesWindowComponent = <StartMessage />;
+  } else {
+    textMessagesWindowComponent = <MessageList messages={messages} />;
+  }
+
+  messages.forEach((element) => {
+    console.log("here's each element", element);
+    if (element.includes("congratulations")) {
+      console.log("found congratulations!!");
+      textMessagesWindowComponent = <EndMessage />;
+    }
+  });
+
   return (
     <div className="App">
       <div className="App-header">BeSherlock App</div>
@@ -91,7 +105,7 @@ function App() {
         <main>
           <div className="all_messages_bubble_outer_container">
             <div className="all_messages_bubble_inner_container">
-              <MessageList messages={messages} />
+              {textMessagesWindowComponent}
               <div className="TEST" ref={chatContainerRef}></div>
             </div>
           </div>
