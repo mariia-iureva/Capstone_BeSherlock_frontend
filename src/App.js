@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./App.css";
 import MessageList from "./MessageList";
+import Timer from "./Timer";
+// import desktopImage from "./img/sherlock_desktop.jpeg";
+// import mobileImage from "./img/sherlock_mobile-min.png";
 // import ScrollToBottom from "react-scroll-to-bottom";
 
 function App() {
@@ -9,20 +12,22 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [step, setStep] = useState(-1);
 
+  // const imageUrl = window.innerWidth >= 650 ? desktopImage : mobileImage;
+
   const handleChange = (event) => {
     setInputMessage(event.target.value);
-    // console.log("handleChange", event.target.value);
+    console.log("handleChange", event.target.value);
   };
 
   // This thing is setting a timer to update input message after a pause
   // instead of letter by letter
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log("we're updating input after a pause:", inputMessage);
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [inputMessage]);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     console.log("we're updating input after a pause:", inputMessage);
+  //   }, 500);
+  //   return () => clearTimeout(timer);
+  // }, [inputMessage]);
 
   // This thing triggers handleClick when key "Enter" is hit
   const handleKeyDown = (event) => {
@@ -79,35 +84,42 @@ function App() {
 
   return (
     <div className="App">
-      <h1> Conversation</h1>
-      <main>
-        <div className="all_messages_bubble_outer_container">
-          <div className="all_messages_bubble_inner_container">
-            <MessageList messages={messages} />
-            <div className="TEST" ref={chatContainerRef}></div>
+      <div className="App-header">BeSherlock App</div>
+      <Timer></Timer>
+      {/* <h2> Conversation</h2> */}
+      <div>
+        <main>
+          <div className="all_messages_bubble_outer_container">
+            <div className="all_messages_bubble_inner_container">
+              <MessageList messages={messages} />
+              <div className="TEST" ref={chatContainerRef}></div>
+            </div>
           </div>
-        </div>
-      </main>
-      <section>
-        <label htmlFor="message">Message:</label>
-        <input
-          id="standard-name"
-          label="Message"
-          placeholder="Write here"
-          value={inputMessage}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          margin="normal"
-          type="text"
-        />
-        <button
-          className="send_message_button"
-          onClick={handleClick}
-          // disabled={!inputMessage}
-        >
-          Say something
-        </button>
-      </section>
+
+          <section className="text-input-field">
+            {/* <label htmlFor="message">Message:</label> */}
+            <input
+              id="standard-name"
+              className="input-field"
+              label="Message"
+              placeholder="Write here"
+              value={inputMessage}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              margin="normal"
+              type="text"
+            />
+            <button
+              className="button"
+              onClick={handleClick}
+              // disabled={!inputMessage}
+            >
+              <span>Send</span>
+            </button>
+          </section>
+        </main>
+        <footer className="App-footer"> Created by Masha, C18</footer>
+      </div>
     </div>
   );
 }

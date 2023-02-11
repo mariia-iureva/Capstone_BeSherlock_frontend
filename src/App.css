@@ -1,28 +1,47 @@
 .App {
   text-align: center;
   overflow-x: hidden;
+  background: url(./img/Sherlock_border_01.jpg) left center no-repeat,
+    url(./img/sherlock_border_02.jpg) right center no-repeat, 
+    url(./img/sherlock_inside.jpg) left center repeat 
+    ;
+  overflow: hidden;  
+}
+
+@media screen and (min-width: 100px) and (max-width: 1132px) {
+  .App {
+    background: url(./img/Sherlock_border_01.jpg) left top no-repeat,
+    url(./img/sherlock_inside.jpg) left top repeat 
+    ;
+    overflow: hidden;  
+  }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+  /* background-color: #000000; */
+  /* min-height: 8vh; */
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: center; */
+
+  font-size: 58px;
+  margin: 15px;
   color: white;
 }
 
 main .all_messages_bubble_outer_container {
   margin: auto;
   border: solid;
-  border-color: black;
+  border-width: thin;
+  border-color: rgb(136, 134, 134);
   border-radius: 3em;
+  box-shadow: 10px 20px 35px #5a5959;
+  /* box-shadow: 10px 20px 35px 0 rgba(94, 94, 94, 0.7), 10px 20px 20px 0 rgba(95, 95, 95, 0.7); */
   width: 60%;
   height: 600px;
   overflow:hidden;
-  background-color:rgb(232, 246, 219);
+  background-color:rgba(243, 244, 243, 0.8);
   /* padding-left: 2em;
   padding-right: 2em; */
   padding-bottom: 1rem;
@@ -42,8 +61,143 @@ main .all_messages_bubble_inner_container {
 
 }
 
-.TEST {
+/* @media screen and (min-width: 100px) and (max-width: 640px) {
+  .main_screen {
+    background: purple;
+  }
+} */
+/* @media screen and (min-width: 641px) and (max-width: 1200px) { */
+/* .main_screen {
+    background: url(./img/Sherlock_border_01.jpg) left top no-repeat,
+    url(./img/sherlock_border_02.jpg) right top no-repeat, 
+    url(./img/sherlock_inside.jpg) left top repeat 
+    ;
+  } */
+
+
+/* .TEST {
   height: 5px;
   width: 100%;
   border: 1px solid red;
+} */
+
+.text-input-field {
+  
+  min-height: 10vh;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+}
+
+.input-field {
+  width: 35%;
+  padding: 14px 20px;
+  opacity: 0.6;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: medium;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 10px;
+}
+
+.input-field:hover {
+  /* background-color: #04b9f0; */
+  opacity: 1;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 10px;
+  background-color: #02aadd;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 22px;
+  padding: 10px;
+  width: 140px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover {
+  background-color: #04b9f0;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.App-footer {
+  /* background-color: #000000; */
+  /* min-height: 8vh; */
+  font-size: calc(10px + 1vmin);
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 32px;
+}
+
+.timer-button {
+  display: inline-block;
+  border-radius: 10px;
+  background-color: #02aadd;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 5px;
+  width: 60px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 9px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.timer-button:hover {
+  background-color: #04b9f0;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+
+}
+
+.timer-app {
+  margin: 10px;
+  
+  /* min-height: 10vh; */
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+}
+
+.time {
+  color: #FFFFFF;
+  font-size: 28px;
+  margin-right: 10px;
+  margin-bottom: 4px;
 }
