@@ -11,7 +11,7 @@ const Message = (props) => {
   return (
     <div className={localRemote}>
       <section className="entry-bubble">
-        <p>{props.entry}</p>
+        <p className="one-entry">{props.entry}</p>
       </section>
     </div>
   );

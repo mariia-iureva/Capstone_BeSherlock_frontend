@@ -45,8 +45,28 @@ function App() {
     if (!inputMessage) {
       return;
     }
+
     let url = `${process.env.REACT_APP_BACKEND_URL}/postMessage`;
     let body = { message: inputMessage, step: step };
+
+    // __Starting over with "start" message
+    // if (
+    //   inputMessage.includes("start") &&
+    //   messages.includes("That's it, congratulations!")
+    // ) {
+    //   const msgList02 = messages;
+    //   msgList02[-1] = "You won!";
+    //   console.log(msgList02);
+    //   setMessages([...msgList02]);
+    // }
+
+    if (inputMessage.includes("start") && messages.length > 0) {
+      // console.log("found start and messages not empty");
+      const startingStep = -1;
+      body = { message: inputMessage, step: startingStep };
+    }
+
+    // console.log("body", body);
     const msgList = messages;
     msgList.push("You: " + inputMessage);
     setMessages([...msgList]);
@@ -61,7 +81,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-    console.log("handleClick end", msgList);
+    // console.log("handleClick end", msgList);
 
     setInputMessage("");
   }, [inputMessage, setInputMessage, messages, setMessages, step, setStep]);
@@ -88,13 +108,13 @@ function App() {
     textMessagesWindowComponent = <MessageList messages={messages} />;
   }
 
-  messages.forEach((element) => {
-    console.log("here's each element", element);
-    if (element.includes("congratulations")) {
-      console.log("found congratulations!!");
-      textMessagesWindowComponent = <EndMessage />;
-    }
-  });
+  if (
+    messages.length > 0 &&
+    messages[messages.length - 1] === "Bot: That's it, congratulations!"
+  ) {
+    console.log("found congratulations!!");
+    textMessagesWindowComponent = <EndMessage />;
+  }
 
   return (
     <div className="App">

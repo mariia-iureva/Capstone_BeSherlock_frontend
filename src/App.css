@@ -201,3 +201,7 @@ main .all_messages_bubble_inner_container {
   margin-right: 10px;
   margin-bottom: 4px;
 }
+
+.start-end-message {
+  font-size: 24px;
+}

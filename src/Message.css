@@ -65,7 +65,7 @@
 
 /* "remote" messages are shown on the right side, in blue */
 .chat-entry.remote {
-    text-align: right;
+    text-align: left;
 }
 
 .chat-entry.remote .entry-bubble {
@@ -89,4 +89,9 @@
 
 .chat-entry.remote .entry-bubble:hover::before {
     background-color: #a9f6f6;
+}
+
+.one-entry {
+    white-space: pre-line;  
+    vertical-align: bottom;
 }
